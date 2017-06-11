@@ -9,5 +9,9 @@ export default class Quenta {
     // skills
   }
 
+  equals(otherQuenta) {
+    return this.name === otherQuenta.name && this.description === otherQuenta.description
+  }
+
 
 }

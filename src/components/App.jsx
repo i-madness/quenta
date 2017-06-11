@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CharProfile from './CharProfile'
 import Quenta from '../model/quenta'
+import store from '../store'
+import { ACTION_TYPES } from '../reducers/quenta-reducer'
 
 import './styles/App.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -11,8 +13,13 @@ const quents = [
   new Quenta("Квазимодо", "Who the fuck is Квазимодо?"),
 ]
 
+let actions = quents
+  .map(q => ({ type: ACTION_TYPES.QUENTA_CREATED, payload: q }))
+  .forEach(store.dispatch)
+
 export default class App extends Component {
   render() {
+    console.log(store)
     return (
       <div className="container-fluid App">
         <div className="row">
