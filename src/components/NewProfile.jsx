@@ -9,11 +9,17 @@ import { Alignment, alignmentClass } from '../model/alignment'
 import { Genders, getRandomName } from '../logic/name-generator'
 import './styles/NewProfile.css'
 
-/**
- * Создаёт tooltip с указанным текстом
- * @param {String} text текст всплывающей подсказки
- */
-const tooltip = text => <Tooltip id="tooltip">{text}</Tooltip>
+const tooltip = text => (<Tooltip id="tooltip">{text}</Tooltip>)
+
+const initialComponentState = () => ({
+  name: '',
+  description: '',
+  age: 20,
+  gender: Genders.MALE,
+  alignment: Alignment.TRUE_NEUTRAL,
+
+  saveDisabled: true
+})
 
 /**
  * Компонент для создания новых квент
@@ -21,12 +27,7 @@ const tooltip = text => <Tooltip id="tooltip">{text}</Tooltip>
 export default class NewProfile extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      name: '',
-      description: '',
-      gender: Genders.MALE,
-      alignment: Alignment.TRUE_NEUTRAL
-    }
+    this.state = initialComponentState()
     this.saveProfile = this.saveProfile.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectGender = this.selectGender.bind(this)
@@ -37,8 +38,8 @@ export default class NewProfile extends Component {
    * Сохранить квенту
    */
   saveProfile() {
-    let { name, gender, description, alignment } = this.state
-    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, description, alignment) })
+    let { name, gender, age, description, alignment } = this.state
+    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, age, description, alignment) })
     this.clearState()
   }
 
@@ -48,8 +49,12 @@ export default class NewProfile extends Component {
   getValidationState() {
     const length = this.state.name.length;
     if (length) {
+      let state = this.state
+      this.state.saveDisabled = false
       return 'success'
     } else {
+      let state = this.state
+      this.state.saveDisabled = true
       return 'error'
     }
   }
@@ -71,7 +76,8 @@ export default class NewProfile extends Component {
   randomizeName() {
     this.setState({
       ...this.state,
-      name: getRandomName(this.state.gender)
+      name: getRandomName(this.state.gender),
+      saveDisabled: false
     })
   }
 
@@ -104,12 +110,7 @@ export default class NewProfile extends Component {
   }
 
   clearState() {
-    this.setState({
-      name: '',
-      description: '',
-      alignment: Alignment.TRUE_NEUTRAL,
-      gender: Genders.MALE
-    })
+    this.setState(initialComponentState())
   }
 
   render() {
@@ -137,12 +138,19 @@ export default class NewProfile extends Component {
           <Navbar.Collapse>
             <Nav>
               <OverlayTrigger placement="bottom" overlay={tooltip('Сохранить')}>
-                <NavItem eventKey={1} href="#" onClick={this.saveProfile} className="save-btn">
+                <NavItem eventKey={1} href="#" onClick={this.saveProfile} className="save-btn bg-success" disabled={this.state.saveDisabled}>
                   <span className="glyphicon glyphicon-floppy-disk"></span>
                 </NavItem>
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltip('Отмена')}>
-                <NavItem eventKey={2} href="#" className="cancel-btn" onClick={() => this.clearState()}><span className="glyphicon glyphicon-ban-circle"></span></NavItem>
+                <NavItem eventKey={2} href="#" className="cancel-btn bg-danger" onClick={() => this.clearState()}>
+                  <span className="glyphicon glyphicon-ban-circle"></span>
+                </NavItem>
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={tooltip('Случайная генерация квенты')}>
+                <NavItem eventKey={2} href="#" className="quenta-rnd-btn bg-info">
+                  <span className="glyphicon glyphicon-random"></span>
+                </NavItem>
               </OverlayTrigger>
             </Nav>
           </Navbar.Collapse>
@@ -166,13 +174,16 @@ export default class NewProfile extends Component {
           </InputGroup>
           <HelpBlock style={this.getValidationState() === 'error' ? { display: 'block' } : { display: 'none' }}>Имя персонажа не должно быть пустым</HelpBlock>
         </FormGroup>
-        <FormGroup controlId="description">
+        <FormGroup controlId="age">
           <InputGroup>
-            <InputGroup.Addon>Описание</InputGroup.Addon>
-            <FormControl type="text" value={this.state.description} placeholder="Описание..." onChange={this.handleChange} />
+            <InputGroup.Addon>Возраст</InputGroup.Addon>
+            <FormControl type="number" value={this.state.age} min="1" placeholder="1 ... ∞" onChange={this.handleChange} />
           </InputGroup>
         </FormGroup>
-
+        <Panel header="Описание">
+          <p className="panel-title-horizontal"></p>
+          <textarea className="form-control" id="description" onChange={this.handleChange} value={this.state.description} rows="3" />
+        </Panel>
         <Panel>
           <p className="panel-title">Мировоззрение</p>
           <div className="btn-group">

@@ -4,6 +4,6 @@ import { createLogger } from 'redux-logger'
 import reducer from './reducers/index.js'
 
 const middleware = applyMiddleware(thunk, createLogger())
-const store = window['store'] = createStore(reducer, middleware)
+const store = createStore(reducer, middleware)
 
 export default store

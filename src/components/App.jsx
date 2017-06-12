@@ -13,13 +13,16 @@ class App extends Component {
     return (
       <div className="container-fluid App">
         <div className="row">
-          <div className="col-sm-3 col-md-3 sidebar">
-            <Button bsClass="btn btn-success" id="new-quenta-btn" style={displayNewBtn()}><span className="glyphicon glyphicon-plus"></span> Новая квента</Button>
+          <div className="col-sm-3 col-md-3 col-lg-3 sidebar">
+            <Button bsClass="btn btn-success" id="new-quenta-btn" style={displayNewBtn()}>
+              <span className="glyphicon glyphicon-plus"></span> Новая квента
+            </Button>
             <ul className="nav nav-sidebar">
               {quentas.map((q, i) => <li key={i} className={i === 0 ? 'active' : ''}><a href="#">{q.name}</a></li>)}
             </ul>
           </div>
-          <div className="col-sm-9 col-md-9 main">
+
+          <div className="col-sm-9 col-md-9 col-lg-9 main">
             {this.props.children}
           </div>
         </div>

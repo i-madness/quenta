@@ -2,7 +2,7 @@
   border-radius: 0 0 10px 10px;
 }
 
-.save-btn, .cancel-btn {
+.save-btn, .cancel-btn, .quenta-rnd-btn {
   font-size: 17pt;
 }
 
@@ -10,9 +10,20 @@
   margin-bottom: 15px;
 }
 
-.panel-title {
-  float: left;
+.panel-title-horizontal, .panel-title {
   vertical-align: middle;
   color: #000;
   line-height: 32px;
+}
+
+.panel-title {
+  float: left;
+}
+
+.panel-heading {
+  text-align: left
+}
+
+textarea {
+  resize: none;
 }
