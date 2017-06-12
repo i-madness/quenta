@@ -9,3 +9,10 @@
 .gender-selectgroup {
   margin-bottom: 15px;
 }
+
+.panel-title {
+  float: left;
+  vertical-align: middle;
+  color: #000;
+  line-height: 32px;
+}
