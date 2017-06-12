@@ -31,6 +31,10 @@
   background-color: #333333;
 }
 
+input {
+  color: #333333 !important;
+}
+
 /*
  * Sidebar
  */

@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const CharProfile = (quenta) => {
-  let { name, description } = quenta
+export default class CharProfile extends Component {
+  //let { name, description } = quenta
 
-  return (
-    <div>
-      <h1>{ name }</h1>
-      <p>{ description }</p>
-    </div>
-  )
+  render() { 
+    return (
+      <div>
+        <h1>{ this.props.quenta.name }</h1>
+        <p>{ this.props.quenta.description }</p>
+      </div>
+    )
+  }
 }
-
-export default CharProfile

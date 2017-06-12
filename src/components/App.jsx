@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CharProfile from './CharProfile'
+//import CharProfile from './CharProfile'
+import { connect } from 'react-redux'
 import Quenta from '../model/quenta'
 import store from '../store'
 import { ACTION_TYPES } from '../reducers/quenta-reducer'
@@ -7,33 +8,39 @@ import { ACTION_TYPES } from '../reducers/quenta-reducer'
 import './styles/App.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-const quents = [
-  new Quenta("Alice", "Who the fuck is Alice?"),
-  new Quenta("Румпельштильцхен", "Who the fuck is Румпельштильцхен?"),
-  new Quenta("Квазимодо", "Who the fuck is Квазимодо?"),
-]
+//const quentas = 
 
-let actions = quents
+/*quentas
   .map(q => ({ type: ACTION_TYPES.QUENTA_CREATED, payload: q }))
-  .forEach(store.dispatch)
+  .forEach(store.dispatch)*/
 
-export default class App extends Component {
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      quentas: props.store.quentaReducer.quentas
+    }
+  }
+
   render() {
-    console.log(store)
+    let {quentas} = this.state
+    console.log(quentas)
     return (
       <div className="container-fluid App">
         <div className="row">
           <div className="col-sm-3 col-md-3 sidebar">
             <button className="btn btn-success" id="new-quenta-btn"><span className="glyphicon glyphicon-plus"></span> Новая квента</button>
             <ul className="nav nav-sidebar">
-              { quents.map( (q, i) => <li key={i} className={q.active ? 'active' : ''}><a href="#">{q.name}</a></li> ) }              
+              {quentas.map((q, i) => <li key={i} className={i === 0 ? 'active' : ''}><a href="#">{q.name}</a></li>)}
             </ul>
           </div>
           <div className="col-sm-9 col-md-9 main">
-            { CharProfile({ name: 'Alice', description: 'Who the fuck is Alice?!' }) }
+            {this.props.children}
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default connect(state => ({ store: state }))(App)
