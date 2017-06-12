@@ -30,8 +30,9 @@ const initialComponentState = () => ({
 export default class NewProfile extends Component {
   constructor(props) {
     super(props)
+    this.races = []
+    getRaces().then(races => this['races'] = races)
     this.state = initialComponentState()
-    this.races = getRaces()
     this.saveProfile = this.saveProfile.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectGender = this.selectGender.bind(this)

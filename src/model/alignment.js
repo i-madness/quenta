@@ -38,7 +38,7 @@ export function alignmentClass(alignment) {
       return 'danger'
     }
     default : {
-      return 'warning'
+      return 'info'
     }
   }
 }

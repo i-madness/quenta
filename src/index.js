@@ -13,7 +13,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={NewProfile}></IndexRoute>
-        <Route path="quenta(/:name)" component={CharProfile}></Route>
+        <Route path="quenta/:name" component={CharProfile}></Route>
       </Route>
     </Router>
   </Provider>,

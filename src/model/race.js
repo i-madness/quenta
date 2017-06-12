@@ -1,7 +1,7 @@
 export default class Race {
-  constructor(name) {
+  constructor(name, subraces) {
     this.name = name
-    this.subraces = []
+    this.subraces = subraces
   }
 
   addSubRace(subrace) {
