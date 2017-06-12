@@ -10,6 +10,7 @@ const displayNewBtn = () => ({ display: window.location.hash === '#/' ? 'none' :
 class App extends Component {
   render() {
     let { quentas } = this.props.store.quentaReducer
+    
     return (
       <div className="container-fluid App">
         <div className="row">

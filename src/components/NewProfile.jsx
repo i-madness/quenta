@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import store from '../store'
 import {
   FormControl, FormGroup, HelpBlock, Navbar, NavItem, Nav, InputGroup, Button,
-  OverlayTrigger, Tooltip, ButtonGroup, Panel
+  OverlayTrigger, Tooltip, ButtonGroup, Panel, DropdownButton, MenuItem
 } from 'react-bootstrap'
 import Quenta from '../model/quenta'
 import { Alignment, alignmentClass } from '../model/alignment'
 import { Genders, getRandomName } from '../logic/name-generator'
+import { getRaces } from '../logic/race-provider'
+import { randomInArr } from '../application-utils'
 import './styles/NewProfile.css'
 
 const tooltip = text => (<Tooltip id="tooltip">{text}</Tooltip>)
@@ -17,7 +19,8 @@ const initialComponentState = () => ({
   age: 20,
   gender: Genders.MALE,
   alignment: Alignment.TRUE_NEUTRAL,
-
+  race: { name: '', subraces: [] },
+  subRace: { name: '' },
   saveDisabled: true
 })
 
@@ -28,6 +31,7 @@ export default class NewProfile extends Component {
   constructor(props) {
     super(props)
     this.state = initialComponentState()
+    this.races = getRaces()
     this.saveProfile = this.saveProfile.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectGender = this.selectGender.bind(this)
@@ -38,8 +42,8 @@ export default class NewProfile extends Component {
    * Сохранить квенту
    */
   saveProfile() {
-    let { name, gender, age, description, alignment } = this.state
-    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, age, description, alignment) })
+    let { name, gender, race, age, description, alignment, subRace } = this.state
+    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, subRace || race, age, description, alignment) })
     this.clearState()
   }
 
@@ -64,6 +68,13 @@ export default class NewProfile extends Component {
    * @param {Event} e 
    */
   handleChange(e) {
+    if (e.target.id === 'race') {
+      this.setState({
+        ...this.state,
+        race: this.races.find(r => r.name === e.target.value)
+      });
+      return
+    }
     this.setState({
       ...this.state,
       [e.target.id]: e.target.value
@@ -78,6 +89,23 @@ export default class NewProfile extends Component {
       ...this.state,
       name: getRandomName(this.state.gender),
       saveDisabled: false
+    })
+  }
+
+  randomizeRace() {
+    this.setState({
+      ...this.state,
+      race: randomInArr(this.races),
+    })
+  }
+
+  randomizeSubRace() {
+    if (!this.state.race.subraces.length) {
+      return
+    }
+    this.setState({
+      ...this.state,
+      subRace: randomInArr(this.state.race.subraces),
     })
   }
 
@@ -157,9 +185,9 @@ export default class NewProfile extends Component {
         </Navbar>
 
         <ButtonGroup className="gender-selectgroup" justified>
-          <Button id="maleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'M' ? 'btn-primary' : ''}>Мужской</Button>
-          <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'F' ? 'btn-primary' : ''}>Женский</Button>
-          <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === 'O' ? 'btn-primary' : ''}>Другой</Button>
+          <Button id="maleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'M' ? 'btn-success' : ''}>Мужской</Button>
+          <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'F' ? 'btn-success' : ''}>Женский</Button>
+          <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === 'O' ? 'btn-success' : ''}>Другой</Button>
         </ButtonGroup>
         <FormGroup controlId="name" validationState={this.getValidationState()}>
           <InputGroup>
@@ -174,6 +202,35 @@ export default class NewProfile extends Component {
           </InputGroup>
           <HelpBlock style={this.getValidationState() === 'error' ? { display: 'block' } : { display: 'none' }}>Имя персонажа не должно быть пустым</HelpBlock>
         </FormGroup>
+
+        <FormGroup controlId="race">
+          <InputGroup>
+            <InputGroup.Addon>Раса</InputGroup.Addon>
+            <FormControl value={this.state.race.name} placeholder="Выберите расу" componentClass="select" onChange={this.handleChange}>
+              {this.races.map((race, i) => <option value={race.name} key={i}>{race.name}</option>)}
+            </FormControl>
+            <InputGroup.Button>
+              <OverlayTrigger placement="bottom" overlay={tooltip('Случайный выбор расы')}>
+                <Button onClick={() => this.randomizeRace()}><span className="glyphicon glyphicon-retweet"></span></Button>
+              </OverlayTrigger>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+
+        <FormGroup controlId="subRace" style={{ display: this.state.race.subraces.length ? 'block' : 'none' }}>
+          <InputGroup>
+            <InputGroup.Addon>Под-раса</InputGroup.Addon>
+            <FormControl value={this.state.subRace.name} placeholder="Выберите расу" componentClass="select" onChange={this.handleChange}>
+              {this.state.race.subraces.map((race, i) => <option value={race.name} key={i}>{race.name}</option>)}
+            </FormControl>
+            <InputGroup.Button>
+              <OverlayTrigger placement="bottom" overlay={tooltip('Случайный выбор под-расы')}>
+                <Button onClick={() => this.randomizeSubRace()}><span className="glyphicon glyphicon-retweet"></span></Button>
+              </OverlayTrigger>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+
         <FormGroup controlId="age">
           <InputGroup>
             <InputGroup.Addon>Возраст</InputGroup.Addon>

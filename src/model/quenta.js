@@ -1,8 +1,9 @@
 
 export default class Quenta {
-  constructor(name, gender, age, description, alignment) {
+  constructor(name, gender, race, age, description, alignment) {
     this.name = name
     this.gender = gender
+    this.race = race
     this.age = age
     this.description = description
     this.alignment = alignment

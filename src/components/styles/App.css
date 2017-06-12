@@ -33,7 +33,7 @@ input {
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
+    padding: 0 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #252526;
@@ -63,4 +63,6 @@ input {
 
 #new-quenta-btn {
   margin-bottom: 20px;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
 }
