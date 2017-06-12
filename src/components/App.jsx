@@ -8,22 +8,10 @@ import { ACTION_TYPES } from '../reducers/quenta-reducer'
 import './styles/App.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-//const quentas = 
-
-/*quentas
-  .map(q => ({ type: ACTION_TYPES.QUENTA_CREATED, payload: q }))
-  .forEach(store.dispatch)*/
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      quentas: props.store.quentaReducer.quentas
-    }
-  }
-
   render() {
-    let {quentas} = this.state
+    let {quentas} = this.props.store.quentaReducer
     console.log(quentas)
     return (
       <div className="container-fluid App">

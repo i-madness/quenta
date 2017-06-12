@@ -1,0 +1,11 @@
+.editor-nav {
+  border-radius: 0 0 10px 10px;
+}
+
+.save-btn, .cancel-btn {
+  font-size: 17pt;
+}
+
+.gender-selectgroup {
+  margin-bottom: 15px;
+}
