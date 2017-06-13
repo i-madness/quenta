@@ -1,6 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 /public/races.json
+/src/preset-kk.js
+/quenta_generator*
 
 # dependencies
 node_modules

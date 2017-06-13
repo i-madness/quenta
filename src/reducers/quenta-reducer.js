@@ -1,11 +1,7 @@
 import Quenta from '../model/quenta'
 
 const InitialState = {
-  quentas: [
-/*    new Quenta("Alice", 'F', "Who the fuck is Alice?"),
-    new Quenta("Румпельштильцхен", 'M', "Who the fuck is Румпельштильцхен?"),
-    new Quenta("Квазимодо", 'O', "Who the fuck is Квазимодо?"),*/
-  ],
+  quentas: [],
   currentQuenta: undefined,
   error: undefined
 }

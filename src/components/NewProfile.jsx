@@ -96,7 +96,7 @@ export default class NewProfile extends Component {
   randomizeRace() {
     this.setState({
       ...this.state,
-      race: randomInArr(this.races),
+      race: this.races.length ? randomInArr(this.races) : this.state.race,
     })
   }
 
@@ -159,7 +159,7 @@ export default class NewProfile extends Component {
       <div>
         <Navbar collapseOnSelect className="editor-nav">
           <Navbar.Header>
-            <Navbar.Brand>
+            <Navbar.Brand tabIndex="999">
               <a href="#">Создание профиля</a>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -190,6 +190,7 @@ export default class NewProfile extends Component {
           <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'F' ? 'btn-success' : ''}>Женский</Button>
           <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === 'O' ? 'btn-success' : ''}>Другой</Button>
         </ButtonGroup>
+        
         <FormGroup controlId="name" validationState={this.getValidationState()}>
           <InputGroup>
             <InputGroup.Addon>Имя</InputGroup.Addon>
@@ -238,10 +239,12 @@ export default class NewProfile extends Component {
             <FormControl type="number" value={this.state.age} min="1" placeholder="1 ... ∞" onChange={this.handleChange} />
           </InputGroup>
         </FormGroup>
+
         <Panel header="Описание">
           <p className="panel-title-horizontal"></p>
           <textarea className="form-control" id="description" onChange={this.handleChange} value={this.state.description} rows="3" />
         </Panel>
+
         <Panel>
           <p className="panel-title">Мировоззрение</p>
           <div className="btn-group">

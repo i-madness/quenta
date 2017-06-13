@@ -30,6 +30,9 @@ export function randomAlignment() {
  * @param alignment - одна из записей в объекте Alignment
  */
 export function alignmentClass(alignment) {
+  if (!alignment || !alignment[0]) {
+    throw new Error("Передаваемый аргумент не является записью из перечисления мировоззрений")
+  }
   switch (alignment[0][1]) {
     case 'G': {
       return 'success'
