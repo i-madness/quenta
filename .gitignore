@@ -2,7 +2,6 @@
 
 /public/races.json
 /src/preset-kk.js
-/quenta_generator*
 
 # dependencies
 node_modules
@@ -12,6 +11,7 @@ coverage
 
 # production
 build
+/dist-*
 
 # misc
 .DS_Store
