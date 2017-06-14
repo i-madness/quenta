@@ -6,7 +6,11 @@ import { Provider } from 'react-redux'
 import CharProfile from './components/CharProfile'
 import NewProfile from './components/NewProfile'
 import store from './store'
+import { getSkillsets } from './logic/skillset-provider'
+import { ACTION_TYPES as skillActions } from './reducers/skill-reducer'
 import './index.css'
+
+getSkillsets().then(sets => store.dispatch({ type: skillActions.SKILLSETS_LOADED, payload: sets }))
 
 ReactDOM.render(
   <Provider store={store}>

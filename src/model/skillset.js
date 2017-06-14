@@ -1,4 +1,19 @@
 /**
+ * Модель для умения персонажа
+ */
+export class Skill {
+  constructor(name, level, skillset, isActive) {
+    if (!name || !skillset) {
+      throw new Error("Имя и набор умений должны быть указаны обязательно")
+    }
+    this.name = name
+    this.level = level
+    this.skillset = skillset
+    this.isActive = isActive
+  }
+}
+
+/**
  * Модель для набора умений персонажа
  */
 export class Skillset {
@@ -18,20 +33,5 @@ export class Skillset {
       throw new Error('Переданный аргумент не является объектом Skill')
     }
     this.skills.push(skill)
-  }
-}
-
-/**
- * Модель для умения персонажа
- */
-export class Skill {
-  constructor(name, level, skillset, isActive) {
-    if (!name || !skillset) {
-      throw new Error("Имя и набор умений должны быть указаны обязательно")
-    }
-    this.name = name
-    this.level = level
-    this.skillset = skillset
-    this.isActive = isActive
   }
 }

@@ -1,5 +1,6 @@
 import { Skillset, Skill } from '../model/skillset'
 import { skillsets } from '../preset-kk'
+import { sortBy } from 'lodash'
 
 /**
  * Заглушка для получения сетов умений

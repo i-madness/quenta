@@ -1,5 +1,3 @@
-import Quenta from '../model/quenta'
-
 const InitialState = {
   quentas: [],
   currentQuenta: undefined,

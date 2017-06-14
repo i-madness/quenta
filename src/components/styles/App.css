@@ -9,6 +9,8 @@
   color: #fff;
   height: 100vh;
   background-color: #333333;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
 input {

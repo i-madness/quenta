@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import store from '../store'
+import SkillBlock from './SkillBlock'
 import {
   FormControl, FormGroup, HelpBlock, Navbar, NavItem, Nav, InputGroup, Button,
-  OverlayTrigger, Tooltip, ButtonGroup, Panel, DropdownButton, MenuItem
+  OverlayTrigger, Tooltip, ButtonGroup, Panel
 } from 'react-bootstrap'
 import Quenta from '../model/quenta'
 import { Alignment, alignmentClass } from '../model/alignment'
@@ -31,12 +33,15 @@ export default class NewProfile extends Component {
   constructor(props) {
     super(props)
     this.races = []
-    getRaces().then(races => this['races'] = races)
     this.state = initialComponentState()
     this.saveProfile = this.saveProfile.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectGender = this.selectGender.bind(this)
     this.selectAlignment = this.selectAlignment.bind(this)
+  }
+
+  componentWillMount() {
+    getRaces().then(races => this.races = races)
   }
 
   /**
@@ -54,11 +59,9 @@ export default class NewProfile extends Component {
   getValidationState() {
     const length = this.state.name.length;
     if (length) {
-      let state = this.state
       this.state.saveDisabled = false
       return 'success'
     } else {
-      let state = this.state
       this.state.saveDisabled = true
       return 'error'
     }
@@ -251,6 +254,9 @@ export default class NewProfile extends Component {
             {alignments}
           </div>
         </Panel>
+
+        
+        <SkillBlock />
       </div>
     )
   }

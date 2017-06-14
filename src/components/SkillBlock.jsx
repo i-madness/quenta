@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
-import { getSkillsets } from '../logic/skillset-provider'
+import { Panel } from 'react-bootstrap'
+//import { getSkillsets } from '../logic/skillset-provider'
+import './styles/SkillBlock.css'
+
+const setBlock = (s,i) => <Panel className="set-panel" key={i}><img src={s.pic} style={{float: 'left'}} alt={s.name}/> {s.name}</Panel>
 
 /**
  * Дочерний роут NewProfile, выбор умений для персонажа
  */
 class SkillBlock extends Component {
-  constructor(props) {
-    super(props)
-    getSkillsets().then(skillsets => this.skillsets = skillsets)
-  }
-
   render() {
-    return (
-      <div>
+    let skillsetList = this.props.store.skillReducer.skillsets.map(setBlock)
 
-      </div>
+    return (
+      <Panel id="skillblock" header="Умения персонажа">
+        {skillsetList}       
+      </Panel>
     );
   }
 }
 
-export default connect(state => ({ store: state }))(Skillset)
+export default connect(state => ({ store: state }))(SkillBlock)
