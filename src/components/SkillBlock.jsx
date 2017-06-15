@@ -76,7 +76,7 @@ class SkillBlock extends Component {
       <Panel header={skillSetToShow.name} id="selected-skillset-panel">
         <Table fill>
           <tbody>
-            {skillRows}
+            {skillRows.every(row => !row) ? <tr><td>(Вы добавили все возможные умения из этого набора)</td></tr> : skillRows}
           </tbody>
         </Table>
       </Panel>

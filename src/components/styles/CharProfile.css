@@ -1,0 +1,20 @@
+#quenta-pic {
+  width: 100%;
+  height: auto;
+  float: left;
+  margin: 0 15px 15px 0;
+}
+
+#info-block {
+  color: #333333;
+  text-align: left;
+}
+
+.descr-property-name {
+  text-align: right;
+  font-weight: bold;
+}
+
+.descr-property-value {
+  text-align: left;
+}

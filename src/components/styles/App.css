@@ -54,7 +54,7 @@ input {
   padding-left: 20px;
   color: #fff;
 }
-.nav-sidebar > li > a:hover {
+.nav-sidebar > li > a:hover, .nav-sidebar > li > a:focus {
   color: #333333;
 }
 

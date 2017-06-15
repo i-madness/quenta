@@ -35,16 +35,11 @@ const initialComponentState = () => ({
 class NewProfile extends Component {
   constructor(props) {
     super(props)
-    this.races = []
     this.state = initialComponentState()
     this.saveProfile = this.saveProfile.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectGender = this.selectGender.bind(this)
     this.selectAlignment = this.selectAlignment.bind(this)
-  }
-
-  componentWillMount() {
-    getRaces().then(races => this.races = races)
   }
 
   /**
@@ -53,7 +48,7 @@ class NewProfile extends Component {
   saveProfile() {
     let { name, gender, race, age, description, alignment, subRace } = this.state
     let skills = this.props.store.skillReducer.currentQuentaSkills
-    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, subRace || race, age, description, alignment, skills) })
+    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, subRace.name ? subRace : race, age, description, alignment, skills) })
     this.clearState()
     store.dispatch({ type: SkillActions.QUENTA_CLEAR_SKILLS })
   }
@@ -78,10 +73,19 @@ class NewProfile extends Component {
    */
   handleChange(e) {
     if (e.target.id === 'race') {
+      if (e.target.value === '(Выберите расу)') {
+        return
+      }
       this.setState({
         ...this.state,
-        race: this.races.find(r => r.name === e.target.value)
+        race: this.props.store.raceReducer.races.find(r => r.name === e.target.value)
       });
+      return
+    } else if (e.target.id === 'subRace') {
+      this.setState({
+        ...this.state,
+        subRace: this.state.race.subraces.find(sr => sr.name === e.target.value)
+      })
       return
     }
     this.setState({
@@ -102,9 +106,10 @@ class NewProfile extends Component {
   }
 
   randomizeRace() {
+    let { races } = this.props.store.raceReducer
     this.setState({
       ...this.state,
-      race: this.races.length ? randomInArr(this.races) : this.state.race,
+      race: races.length ? randomInArr(races) : this.state.race,
     })
   }
 
@@ -220,7 +225,7 @@ class NewProfile extends Component {
           <InputGroup>
             <InputGroup.Addon>Раса</InputGroup.Addon>
             <FormControl value={this.state.race.name} placeholder="Выберите расу" componentClass="select" onChange={this.handleChange}>
-              {this.races.map((race, i) => <option value={race.name} key={i}>{race.name}</option>)}
+              {[{ name: '(Выберите расу)' }, ...this.props.store.raceReducer.races].map((race, i) => <option value={race.name} key={i}>{race.name}</option>)}
             </FormControl>
             <InputGroup.Button>
               <OverlayTrigger placement="bottom" overlay={tooltip('Случайный выбор расы')}>
