@@ -4,11 +4,15 @@
   overflow-y: auto;
 }
 
+.skillblock-header {
+  margin-bottom: 15px;
+}
+
 .set-panel {
   display: inline-block;
   text-align: left;
   width: 46%;
-  margin: 10px;
+  margin: 8px;
   cursor: pointer;
 }
 
@@ -27,4 +31,10 @@
 .set-panel > .panel-body> img {
   margin-right: 8px;
   border-radius: 4px;
+  width: 32px;
+  height: 32px;
+}
+
+.superset-panel > .panel-body {
+  padding: 0;
 }

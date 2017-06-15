@@ -1,21 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Panel } from 'react-bootstrap'
-//import { getSkillsets } from '../logic/skillset-provider'
+import { Button, Panel } from 'react-bootstrap'
+import { groupBy } from 'lodash'
 import './styles/SkillBlock.css'
 
-const setBlock = (s,i) => <Panel className="set-panel" key={i}><img src={s.pic} style={{float: 'left'}} alt={s.name}/> {s.name}</Panel>
-
 /**
- * Дочерний роут NewProfile, выбор умений для персонажа
+ * Блок на странице создания квенты, отвечающий за выбор умений персонажа
  */
 class SkillBlock extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showSkillSets: false,
+      skillSetToShow: null
+    }
+  }
+
+  selectSkillSet(event, proxy, setName) {
+    this.setState({
+      ...this.state,
+      skillSetToShow: this.props.store.skillReducer.skillsets.find(ss => ss.name === setName)
+    })
+  }
+
+
+  blockMapper(s, i) {
+    return (
+      <Panel className="set-panel" onClick={(e, prx, idx) => this.selectSkillSet(e, prx, s.name)} key={i}>
+        <img src={s.pic} style={{ float: 'left' }} alt={s.name} /> {s.name}
+      </Panel>
+    )
+  }
+
   render() {
-    let skillsetList = this.props.store.skillReducer.skillsets.map(setBlock)
+    let groups = groupBy(this.props.store.skillReducer.skillsets, 'superset')
+    let groupPanels = Object.keys(groups).map((group, i) =>
+      <Panel className="superset-panel" header={group} key={i}>
+        {groups[group].map(this.blockMapper.bind(this))}
+      </Panel>
+    )
 
     return (
       <Panel id="skillblock" header="Умения персонажа">
-        {skillsetList}       
+        <div className="skillblock-header">
+          <Button className="btn btn-info">Добавить умения</Button>
+        </div>
+        {groupPanels}
       </Panel>
     );
   }
