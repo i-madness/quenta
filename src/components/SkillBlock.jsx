@@ -59,14 +59,19 @@ class SkillBlock extends Component {
     if (!skillSetToShow) {
       return null
     }
-    let skillRows = skillSetToShow.skills.map((skill, i) => (
-      <tr key={i}>
-        <td><img src={skillSetToShow.pic} alt={skill.name} style={{ float: 'left' }} /></td>
-        <td>{skill.name}</td>
-        <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
-        <td><Button className="btn btn-success addskill-btn" onClick={(e, p, s) => this.addSkillToQuenta(e, p, skill)}><span className="glyphicon glyphicon-plus"></span></Button></td>
-      </tr>
-    ))
+    let skillRows = skillSetToShow.skills.map((skill, i) => {
+      if (!this.props.store.skillReducer.currentQuentaSkills.find(s => s === skill)) {
+        return (
+          <tr key={i}>
+            <td><img src={skillSetToShow.pic} alt={skill.name} style={{ float: 'left' }} /></td>
+            <td>{skill.name}</td>
+            <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
+            <td><Button className="btn btn-success addskill-btn" onClick={(e, p, s) => this.addSkillToQuenta(e, p, skill)}><span className="glyphicon glyphicon-plus"></span></Button></td>
+          </tr>
+        )
+      }
+      return null
+    })
     return (
       <Panel header={skillSetToShow.name} id="selected-skillset-panel">
         <Table fill>
