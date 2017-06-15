@@ -9,7 +9,7 @@ export class Skill {
     this.name = name
     this.level = level
     this.skillset = skillset
-    this.isActive = isActive
+    this.isActive = isActive || false
   }
 }
 

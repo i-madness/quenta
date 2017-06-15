@@ -1,16 +1,15 @@
 
 export default class Quenta {
-  constructor(name, gender, race, age, description, alignment) {
+  constructor(name, gender, race, age, description, alignment, skills) {
     this.name = name
     this.gender = gender
     this.race = race
     this.age = age
     this.description = description
     this.alignment = alignment
-    // birth place
+    this.skills = skills
     // location
     // faction
-    // skills
   }
 
   equals(otherQuenta) {

@@ -27,3 +27,7 @@
 textarea {
   resize: none;
 }
+
+#save-profile-btn {
+  margin-bottom: 15px;
+}

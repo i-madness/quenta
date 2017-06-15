@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react'
 import store from '../store'
+import { connect } from 'react-redux'
 import SkillBlock from './SkillBlock'
 import {
   FormControl, FormGroup, HelpBlock, Navbar, NavItem, Nav, InputGroup, Button,
@@ -11,6 +12,8 @@ import { Alignment, alignmentClass } from '../model/alignment'
 import { Genders, getRandomName } from '../logic/name-generator'
 import { getRaces } from '../logic/race-provider'
 import { randomInArr } from '../application-utils'
+import { ACTION_TYPES as QuentaActions } from '../reducers/quenta-reducer'
+import { ACTION_TYPES as SkillActions } from '../reducers/skill-reducer'
 import './styles/NewProfile.css'
 
 const tooltip = text => (<Tooltip id="tooltip">{text}</Tooltip>)
@@ -29,7 +32,7 @@ const initialComponentState = () => ({
 /**
  * Компонент для создания новых квент
  */
-export default class NewProfile extends Component {
+class NewProfile extends Component {
   constructor(props) {
     super(props)
     this.races = []
@@ -49,8 +52,10 @@ export default class NewProfile extends Component {
    */
   saveProfile() {
     let { name, gender, race, age, description, alignment, subRace } = this.state
-    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, subRace || race, age, description, alignment) })
+    let skills = this.props.store.skillReducer.currentQuentaSkills
+    store.dispatch({ type: 'QUENTA_CREATED', payload: new Quenta(name, gender, subRace || race, age, description, alignment, skills) })
     this.clearState()
+    store.dispatch({ type: SkillActions.QUENTA_CLEAR_SKILLS })
   }
 
   /**
@@ -145,6 +150,10 @@ export default class NewProfile extends Component {
     this.setState(initialComponentState())
   }
 
+  saveTrigger() {
+    this.props.skillSetToShow = null
+  }
+
   render() {
     let alignments = Object.keys(Alignment)
       .map((al, i) => {
@@ -157,7 +166,6 @@ export default class NewProfile extends Component {
             </Button>
           </OverlayTrigger>)
       })
-
     return (
       <div>
         <Navbar collapseOnSelect className="editor-nav">
@@ -193,7 +201,7 @@ export default class NewProfile extends Component {
           <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'F' ? 'btn-success' : ''}>Женский</Button>
           <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === 'O' ? 'btn-success' : ''}>Другой</Button>
         </ButtonGroup>
-        
+
         <FormGroup controlId="name" validationState={this.getValidationState()}>
           <InputGroup>
             <InputGroup.Addon>Имя</InputGroup.Addon>
@@ -255,10 +263,13 @@ export default class NewProfile extends Component {
           </div>
         </Panel>
 
-        
-        <SkillBlock />
+        <SkillBlock saveTrigger={this.saveTrigger} />
+
+        <Button id="save-profile-btn" className="btn btn-success" onClick={this.saveProfile} disabled={this.state.saveDisabled}>Сохранить профиль</Button>
       </div>
     )
   }
 
 }
+
+export default connect(state => ({ store: state }))(NewProfile)
