@@ -11,7 +11,7 @@ import Quenta from '../model/quenta'
 import { Alignment, alignmentClass } from '../model/alignment'
 import { Genders, getRandomName } from '../logic/name-generator'
 import { getRaces } from '../logic/race-provider'
-import { randomInArr } from '../application-utils'
+import { randomIn, randomInArr } from '../application-utils'
 import { ACTION_TYPES as QuentaActions } from '../reducers/quenta-reducer'
 import { ACTION_TYPES as SkillActions } from '../reducers/skill-reducer'
 import './styles/NewProfile.css'
@@ -105,6 +105,9 @@ class NewProfile extends Component {
     })
   }
 
+  /**
+   * Выбирает случайную расу из списка доступных рас
+   */
   randomizeRace() {
     let { races } = this.props.store.raceReducer
     this.setState({
@@ -113,6 +116,9 @@ class NewProfile extends Component {
     })
   }
 
+  /**
+   * Выбирает случайную под-расу выбранной расы
+   */
   randomizeSubRace() {
     if (!this.state.race.subraces.length) {
       return
@@ -123,6 +129,36 @@ class NewProfile extends Component {
     })
   }
 
+  /**
+   * Генерирует случайный возраст
+   */
+  randomizeAge() {
+    this.setState({
+      ...this.state,
+      age: randomIn(1, 2000)
+    })
+  }
+
+  /**
+   * Генерирует все параметры квенты случайным образом
+   */
+  randomizeQuenta() {
+    let { races } = this.props.store.raceReducer
+    this.setState({
+      ...this.state,
+      gender: Genders[Object.keys(Genders)[randomIn(0, 2)]],
+      age: randomIn(1, 2000),
+      alignment: Alignment[Object.keys(Alignment)[randomIn(0, 8)]]
+    })
+    setTimeout(() => this.randomizeName(), 10)
+    setTimeout(() => this.randomizeRace(), 10)
+    setTimeout(() => this.randomizeSubRace(), 10)
+  }
+
+  /**
+   * Обаработчик выбора пола
+   * @param {Event} e 
+   */
   selectGender(e) {
     this.setState({
       ...this.state,
@@ -134,6 +170,10 @@ class NewProfile extends Component {
     })
   }
 
+  /**
+   * Обработчик выбора мировоззрения
+   * @param {Event} e 
+   */
   selectAlignment(e) {
     this.setState({
       ...this.state,
@@ -153,10 +193,6 @@ class NewProfile extends Component {
 
   clearState() {
     this.setState(initialComponentState())
-  }
-
-  saveTrigger() {
-    this.props.skillSetToShow = null
   }
 
   render() {
@@ -193,7 +229,7 @@ class NewProfile extends Component {
                 </NavItem>
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltip('Случайная генерация квенты')}>
-                <NavItem eventKey={2} href="#" className="quenta-rnd-btn bg-info">
+                <NavItem eventKey={2} href="#" className="quenta-rnd-btn bg-info" onClick={() => this.randomizeQuenta()} >
                   <span className="glyphicon glyphicon-random"></span>
                 </NavItem>
               </OverlayTrigger>
@@ -238,7 +274,7 @@ class NewProfile extends Component {
         <FormGroup controlId="subRace" style={{ display: this.state.race.subraces.length ? 'block' : 'none' }}>
           <InputGroup>
             <InputGroup.Addon>Под-раса</InputGroup.Addon>
-            <FormControl value={this.state.subRace.name} placeholder="Выберите расу" componentClass="select" onChange={this.handleChange}>
+            <FormControl value={this.state.subRace.name} placeholder="Выберите под-расу" componentClass="select" onChange={this.handleChange}>
               {this.state.race.subraces.map((race, i) => <option value={race.name} key={i}>{race.name}</option>)}
             </FormControl>
             <InputGroup.Button>
@@ -268,7 +304,7 @@ class NewProfile extends Component {
           </div>
         </Panel>
 
-        <SkillBlock saveTrigger={this.saveTrigger} />
+        <SkillBlock />
 
         <Button id="save-profile-btn" className="btn btn-success" onClick={this.saveProfile} disabled={this.state.saveDisabled}>Сохранить профиль</Button>
       </div>
