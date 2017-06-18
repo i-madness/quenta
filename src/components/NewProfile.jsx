@@ -238,9 +238,15 @@ class NewProfile extends Component {
         </Navbar>
 
         <ButtonGroup className="gender-selectgroup" justified>
-          <Button id="maleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'M' ? 'btn-success' : ''}>Мужской</Button>
-          <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === 'F' ? 'btn-success' : ''}>Женский</Button>
-          <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === 'O' ? 'btn-success' : ''}>Другой</Button>
+          <Button id="maleGender" href="#" onClick={this.selectGender} className={this.state.gender === Genders.MALE ? 'btn-success' : ''}>
+            {Genders.MALE}
+          </Button>
+          <Button id="femaleGender" href="#" onClick={this.selectGender} className={this.state.gender === Genders.FEMALE ? 'btn-success' : ''}>
+            {Genders.FEMALE}
+          </Button>
+          <Button id="otherGender" href="#" onClick={this.selectGender} className={this.state.gender === Genders.OTHER ? 'btn-success' : ''}>
+            {Genders.OTHER}
+          </Button>
         </ButtonGroup>
 
         <FormGroup controlId="name" validationState={this.getValidationState()}>
@@ -254,7 +260,7 @@ class NewProfile extends Component {
               </OverlayTrigger>
             </InputGroup.Button>
           </InputGroup>
-          <HelpBlock style={this.getValidationState() === 'error' ? { display: 'block' } : { display: 'none' }}>Имя персонажа не должно быть пустым</HelpBlock>
+          <HelpBlock style={this.getValidationState() === 'error' ? { display: 'block' } : { display: 'none' }}>У персонажа должно быть указано имя</HelpBlock>
         </FormGroup>
 
         <FormGroup controlId="race">
