@@ -1,6 +1,8 @@
-
+/**
+ * Профиль персонажа, содержащий набор его характеристик
+ */
 export default class Quenta {
-  constructor(name, gender, race, age, description, alignment, skills) {
+  constructor(name, gender, race, age, description, alignment, skills, picture) {
     this.name = name
     this.gender = gender
     this.race = race
@@ -8,8 +10,7 @@ export default class Quenta {
     this.description = description
     this.alignment = alignment
     this.skills = skills
-    // location
-    // faction
+    this.picture = picture
   }
 
   equals(otherQuenta) {

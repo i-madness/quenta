@@ -26,6 +26,7 @@ const initialComponentState = () => ({
   alignment: Alignment.TRUE_NEUTRAL,
   race: { name: '', subraces: [] },
   subRace: { name: '' },
+  picture: undefined,
   saveDisabled: true
 })
 
@@ -295,6 +296,11 @@ class NewProfile extends Component {
           <InputGroup>
             <InputGroup.Addon>Возраст</InputGroup.Addon>
             <FormControl type="number" value={this.state.age} min="1" placeholder="1 ... ∞" onChange={this.handleChange} />
+            <InputGroup.Button>
+              <OverlayTrigger placement="bottom" overlay={tooltip('Случайное значение')}>
+                <Button onClick={() => this.randomizeAge()}><span className="glyphicon glyphicon-retweet"></span></Button>
+              </OverlayTrigger>
+            </InputGroup.Button>
           </InputGroup>
         </FormGroup>
 

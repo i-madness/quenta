@@ -17,7 +17,7 @@ class CharProfile extends Component {
     let currenQuenta = quentas.find(q => q.name === this.props.location.pathname.split('/').slice(-1)[0])
     let skillRows = currenQuenta ? currenQuenta.skills.map((skill, i) => (
       <tr key={i}>
-        <td><img src={skill.skillset.pic} alt={skill.skillset.name} /></td>
+        <td><img src={skill.skillset.pic} alt={skill.skillset.name} className="skill-img"/></td>
         <td>{skill.name}</td>
         <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
       </tr>
@@ -28,7 +28,9 @@ class CharProfile extends Component {
         <div>
           <h1>{currenQuenta.name}</h1>
           <div className="row">
-            <div className="col-sm-4 col-md-4 col-lg-4"><img id="quenta-pic" src="./img/no_img_placeholder.jpg" alt="No profile pic" /></div>
+            <div className="col-sm-4 col-md-4 col-lg-4">
+              <img id="quenta-pic" src={currenQuenta.picture ? currenQuenta.picture : './img/no_img_placeholder.jpg'} alt="No profile pic" />
+            </div>
             <div className="col-sm-8 col-md-8 col-lg-8">
               <Panel header="Общая информация" id="info-block">
                 <Table fill>
@@ -64,7 +66,7 @@ class CharProfile extends Component {
               </tbody>
             </Table>
           </Panel>
-          <ButtonGroup justified>
+          <ButtonGroup justified className="profile-actions">
             <Button className="btn btn-primary" href="#">Редактировать квенту</Button>
             <Button className="btn btn-danger" onClick={(e, p, quenta) => this.removeProfile(e, p, currenQuenta)} href="#">Удалить квенту</Button>
           </ButtonGroup>
