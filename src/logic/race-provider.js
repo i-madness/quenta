@@ -1,20 +1,15 @@
 import Race from '../model/race'
 import { sortBy } from 'lodash'
-import { races } from '../preset-kk'
+import presetMap from './preset-manager'
 
 /**
- * Изначально эта функция должна дёргать расы откда-то, но на данный момент
- * ограничиваемся этой заглушкой
+ * Получает расы из заранее заготовленного набора.
+ * * TODO: 
+ * * - определиться с принципом хранения данных, в том числе и пре-сетов;
+ * * - избавиться от заглушек
  */
-export function getRaces() {
-  /*return fetch('/races.json')
-    .then(resp => resp.json())
-    .then(json => {
-      let races = sortBy(json.map(entry => {
-        return new Race(entry.name, entry.subraces.sort().map(sub => new Race(sub, null)))
-      }), race => race.name)
-      return Promise.resolve(races)
-    })*/
+export function getRaces(presetName) {
+  let { races } = presetMap[presetName]
   let raceList = sortBy(races.map(entry => {
     return new Race(entry.name, entry.subraces.sort().map(sub => new Race(sub, null)))
   }), race => race.name)
