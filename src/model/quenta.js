@@ -13,6 +13,11 @@ export default class Quenta {
     this.picture = picture
   }
 
+  static fromPlainObject(obj) {
+    let { name, gender, race, age, description, alignment, skills, picture } = obj
+    return new Quenta(name, gender, race, age, description, alignment, skills, picture)
+  }
+
   equals(otherQuenta) {
     return this.name === otherQuenta.name && this.description === otherQuenta.description
   }

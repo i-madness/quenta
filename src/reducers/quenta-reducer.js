@@ -5,6 +5,7 @@ const InitialState = {
 }
 
 export const ACTION_TYPES = {
+  QUENTAS_LOADED: 'QUENTAS_LOADED',
   QUENTA_CREATED: 'QUENTA_CREATED',
   QUENTA_DELETE: 'QUENTA_DELETE',
   QUENTA_START_EDITING: 'QUENTA_START_EDITING'
@@ -15,6 +16,12 @@ export const ACTION_TYPES = {
  */
 export function quentaReducer(state = InitialState, action) {
   switch (action.type) {
+    case ACTION_TYPES.QUENTAS_LOADED: {
+      return {
+        ...state,
+        quentas: [...action.payload]
+      }
+    }
     case ACTION_TYPES.QUENTA_CREATED: {
       return {
         ...state,
