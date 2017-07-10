@@ -12,8 +12,8 @@ import { ACTION_TYPES as skillActions } from './reducers/skill-reducer'
 import { ACTION_TYPES as raceActions } from './reducers/race-reducer'
 import './index.css'
 
-getSkillsets('vanilla').then(sets => store.dispatch({ type: skillActions.SKILLSETS_LOADED, payload: sets }))
-getRaces('vanilla').then(races => store.dispatch({ type: raceActions.RACES_LOADED, payload: races }))
+getSkillsets('kk').then(sets => store.dispatch({ type: skillActions.SKILLSETS_LOADED, payload: sets }))
+getRaces('kk').then(races => store.dispatch({ type: raceActions.RACES_LOADED, payload: races }))
 
 ReactDOM.render(
   <Provider store={store}>

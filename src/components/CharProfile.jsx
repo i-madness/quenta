@@ -17,7 +17,7 @@ class CharProfile extends Component {
     let currenQuenta = quentas.find(q => q.name === this.props.location.pathname.split('/').slice(-1)[0])
     let skillRows = currenQuenta ? currenQuenta.skills.map((skill, i) => (
       <tr key={i}>
-        <td><img src={skill.skillset.pic} alt={skill.skillset.name} className="skill-img"/></td>
+        <td><img src={skill.pic} alt={skill.skillset.name} className="skill-img"/></td>
         <td>{skill.name}</td>
         <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
       </tr>

@@ -2,7 +2,7 @@
  * Модель для умения персонажа
  */
 export class Skill {
-  constructor(name, level, skillset, isActive) {
+  constructor(name, level, skillset, isActive, pic) {
     if (!name || !skillset) {
       throw new Error("Имя и набор умений должны быть указаны обязательно")
     }
@@ -10,6 +10,7 @@ export class Skill {
     this.level = level
     this.skillset = skillset
     this.isActive = isActive || false
+    this.pic = pic
   }
 }
 

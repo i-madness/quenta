@@ -63,7 +63,7 @@ class SkillBlock extends Component {
       if (!this.props.store.skillReducer.currentQuentaSkills.find(s => s === skill)) {
         return (
           <tr key={i}>
-            <td><img src={skillSetToShow.pic} alt={skill.name} style={{ float: 'left' }} className="skill-img" /></td>
+            <td><img src={skill.pic} alt={skill.name} style={{ float: 'left' }} className="skill-img" /></td>
             <td>{skill.name}</td>
             <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
             <td><Button className="btn btn-success addskill-btn" onClick={(e, p, s) => this.addSkillToQuenta(e, p, skill)}><span className="glyphicon glyphicon-plus"></span></Button></td>
@@ -100,7 +100,7 @@ class SkillBlock extends Component {
     )
     let currentSkillRows = this.props.store.skillReducer.currentQuentaSkills.map((skill, i) => (
       <tr key={i}>
-        <td><img src={skill.skillset.pic} alt={skill.skillset.name} className="skill-img" /></td>
+        <td><img src={skill.pic} alt={skill.skillset.name} className="skill-img" /></td>
         <td>{skill.name}</td>
         <td>{skill.level ? 'Уровень: ' + skill.level : ''}</td>
         <td>
