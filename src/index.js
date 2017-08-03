@@ -14,8 +14,8 @@ import { ACTION_TYPES as raceActions } from './reducers/race-reducer'
 import { ACTION_TYPES as quentaActions } from './reducers/quenta-reducer'
 import './index.css'
 
-getSkillsets('kk').then(sets => store.dispatch({ type: skillActions.SKILLSETS_LOADED, payload: sets }))
-getRaces('kk').then(races => store.dispatch({ type: raceActions.RACES_LOADED, payload: races }))
+getSkillsets('vanilla').then(sets => store.dispatch({ type: skillActions.SKILLSETS_LOADED, payload: sets }))
+getRaces('vanilla').then(races => store.dispatch({ type: raceActions.RACES_LOADED, payload: races }))
 let savedQuentas = JSON.parse(localStorage.getItem('quentas')) || []
 savedQuentas = savedQuentas.map(Quenta.fromPlainObject)
 store.dispatch({ type: quentaActions.QUENTAS_LOADED, payload: savedQuentas })

@@ -67,7 +67,6 @@ class CharProfile extends Component {
             </Table>
           </Panel>
           <ButtonGroup justified className="profile-actions">
-            <Button className="btn btn-primary" href="#">Редактировать квенту</Button>
             <Button className="btn btn-danger" onClick={(e, p, quenta) => this.removeProfile(e, p, currenQuenta)} href="#">Удалить квенту</Button>
           </ButtonGroup>
         </div>
