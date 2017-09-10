@@ -65,6 +65,12 @@ input {
 
 #new-quenta-btn {
   margin-bottom: 20px;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
+  width: 50%;
+  border-radius: 0 0 0 10px;
+}
+
+#settings-btn {
+  margin-bottom: 20px;
+  width: 50%;
+  border-radius: 0 0 10px 0;
 }

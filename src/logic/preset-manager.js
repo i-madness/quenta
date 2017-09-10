@@ -9,6 +9,10 @@ const presetMap = {
   kk: {
     races: kkRaces,
     skillsets: kkSkillsets
+  },
+  custom: {
+    races: undefined,
+    skillsets: undefined
   }
 }
 

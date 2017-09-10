@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import './styles/App.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-const displayNewBtn = () => ({ display: window.location.hash === '#/' ? 'none' : '' })
+const currentPageIsHome = () => window.location.hash === '#/'
 
 class App extends Component {
   render() {
@@ -22,11 +22,15 @@ class App extends Component {
       <div className="container-fluid App">
         <div className="row">
           <div className="col-sm-3 col-md-3 col-lg-3 sidebar">
-            <Button bsClass="btn btn-success" id="new-quenta-btn" onClick={() => window.location.hash = "/"} style={displayNewBtn()}>
-              <span className="glyphicon glyphicon-plus"></span> Новая квента
+            <Button bsClass="btn btn-success" id="new-quenta-btn" onClick={() => window.location.hash = "/"} 
+              style={{display: currentPageIsHome() ? 'none' : '' }}>
+              <span className="glyphicon glyphicon-plus"></span>
             </Button>
-            <ul className="nav nav-sidebar">
-              { qLinks }
+            <Button bsClass="btn" id="settings-btn" style={{ borderRadius: currentPageIsHome() ? '0 0 10px 10px' : '0 0 10px 0' }}>
+              <span className="glyphicon glyphicon-cog"></span>
+            </Button>
+            <ul className="nav nav-sidebar" id="quenta-linklist">
+              {qLinks}
             </ul>
           </div>
 

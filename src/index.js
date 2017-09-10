@@ -27,6 +27,7 @@ ReactDOM.render(
         <IndexRoute component={NewProfile}></IndexRoute>
         <Route path="quenta/:name" component={CharProfile}></Route>
       </Route>
+      <Route path="/settings" component={null} />
     </Router>
   </Provider>,
   document.getElementById('root')
