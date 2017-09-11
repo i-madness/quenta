@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
 
 import './styles/App.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -22,13 +21,12 @@ class App extends Component {
       <div className="container-fluid App">
         <div className="row">
           <div className="col-sm-3 col-md-3 col-lg-3 sidebar">
-            <Button bsClass="btn btn-success" id="new-quenta-btn" onClick={() => window.location.hash = "/"} 
-              style={{display: currentPageIsHome() ? 'none' : '' }}>
+            <Link to="/" className="btn btn-success" id="new-quenta-btn" style={{display: currentPageIsHome() ? 'none' : '' }}>
               <span className="glyphicon glyphicon-plus"></span>
-            </Button>
-            <Button bsClass="btn" id="settings-btn" style={{ borderRadius: currentPageIsHome() ? '0 0 10px 10px' : '0 0 10px 0' }}>
+            </Link>
+            <Link to="settings" className="btn btn-default" id="settings-btn" style={{ borderRadius: currentPageIsHome() ? '0 0 10px 10px' : '0 0 10px 0' }}>
               <span className="glyphicon glyphicon-cog"></span>
-            </Button>
+            </Link>
             <ul className="nav nav-sidebar" id="quenta-linklist">
               {qLinks}
             </ul>

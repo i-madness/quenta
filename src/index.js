@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import App from './components/App'
+import Settings from './components/Settings'
 import { Provider } from 'react-redux'
 import CharProfile from './components/CharProfile'
 import NewProfile from './components/NewProfile'
@@ -26,8 +27,8 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={NewProfile}></IndexRoute>
         <Route path="quenta/:name" component={CharProfile}></Route>
-      </Route>
-      <Route path="/settings" component={null} />
+        <Route path="settings" component={Settings} />
+      </Route>      
     </Router>
   </Provider>,
   document.getElementById('root')
