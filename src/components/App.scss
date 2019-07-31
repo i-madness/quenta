@@ -1,0 +1,44 @@
+@import "../assets/fonts/Alegreya/alegreya-regular.css";
+
+@mixin lightTheme {
+  background-color: #fff;
+
+}
+
+$bg-dark: #1c1c20;
+$bg-light: #fff;
+
+#application-layout {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer"
+  ;
+  grid-auto-rows: 13% 1fr 70px;
+  align-items: center;
+  height: 100%;
+
+  header.app-header {
+    grid-area: header;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  article.app-content {
+    grid-area: content;
+    justify-content: start;
+    height: 100%;
+  }
+
+  footer.app-footer {
+    height: 100%;
+    grid-area: footer;
+    display: grid;
+    background-color: #5e619d;
+    justify-items: center;
+    align-items: center;
+  }
+}

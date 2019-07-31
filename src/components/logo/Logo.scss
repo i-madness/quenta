@@ -1,0 +1,23 @@
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+#logo {
+  font-family: 'Alegreya Regular', sans-serif;;
+  display: flex;
+  align-items: center;
+
+  .caption {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .rotating {
+    animation: rotation .6s infinite linear;
+  }
+}

@@ -1,12 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import NameGenerator from './name-generator/NameGenerator'
+import { Logo } from './logo/Logo'
+
 import './App.scss'
 
-class App extends Component {
+export default function (props) {
   return (
-    <div className="application-layout">
-
+    <div id="application-layout">
+      <header className="app-header">
+        <Logo />
+      </header>
+      <article className="app-content">
+        <NameGenerator />
+      </article>
+      <footer className="app-footer">
+        Copyright
+      </footer>
     </div>
   )
 }
-
-export default App;

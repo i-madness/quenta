@@ -1,0 +1,1 @@
+export const processName = str => str.split(/\W/).join('').trim()
