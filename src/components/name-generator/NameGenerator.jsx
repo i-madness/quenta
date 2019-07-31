@@ -12,6 +12,15 @@ class NameGenerator extends Component {
     }
   }
 
+  generate = () => {
+    if (this.state.name) {
+      this.setState(state => ({
+        name: '',
+        allNames: [...state.allNames, processName(state.name)]
+      }))
+    }
+  }
+
   render() {
     return (
       <div id="name-generator">
@@ -21,9 +30,7 @@ class NameGenerator extends Component {
             value={this.state.name}
             onChange={event => this.setState({ name: event.target.value })}
           />
-          <button
-            onClick={() => this.setState({ name: '', allNames: [...this.state.allNames, processName(this.state.name)] })}
-          >
+          <button onClick={this.generate}>
             Button
           </button>
         </div>

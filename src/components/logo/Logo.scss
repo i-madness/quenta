@@ -17,7 +17,11 @@
     font-weight: bold;
   }
 
-  .rotating {
+  svg.rotating {
     animation: rotation .6s infinite linear;
+  }
+
+  svg.normal {
+    transform: rotate(200deg);
   }
 }
