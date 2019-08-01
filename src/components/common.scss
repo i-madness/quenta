@@ -1,4 +1,15 @@
 $bg-color-main: #48559d;
 $bg-color-main-hover: #5c8eea;
 $bg-color-main-disabled: rgb(65, 90, 119);
+
+$text-color-main: #000;
+
 $font-cyrillic-exotic: 'Didact Gothic', sans-serif;
+
+@mixin selectionOff {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}

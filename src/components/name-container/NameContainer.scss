@@ -1,0 +1,11 @@
+#name-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5em;
+}
+
+.name-tag {
+  padding: .5em;
+  margin: .5em;
+  cursor: pointer;
+}

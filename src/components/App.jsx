@@ -4,7 +4,7 @@ import { Logo } from './logo/Logo'
 
 import './App.scss'
 
-export default function (props) {
+export default function App(props) {
   return (
     <div id="application-layout">
       <header className="app-header">

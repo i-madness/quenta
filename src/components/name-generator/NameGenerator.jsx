@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { processName } from '../../utils/names.util'
 import { isEmpty } from 'lodash'
+import { NameContainer } from '../name-container/NameContainer'
 
+import * as NameMode from '../../model/view/name-mode'
 import './NameGenerator.scss'
 
 class NameGenerator extends Component {
@@ -9,22 +11,29 @@ class NameGenerator extends Component {
     super(props)
     this.state = {
       name: '',
-      allNames: []
+      allNames: [],
+      nameMode: NameMode.CHARACTER
     }
   }
 
-  generate = () => {
+  saveName = () => {
     if (this.state.name) {
       this.setState(state => ({
         name: '',
-        allNames: [...state.allNames, processName(state.name)]
+        allNames: [
+          ...state.allNames,
+          {
+            value: processName(state.name),
+            mode: state.nameMode
+          }
+        ]
       }))
     }
   }
 
   render() {
     return (
-      <div id="name-generator">
+      <section id="name-generator">
         <div className="generator-input-group">
           <input
             className="generator-input"
@@ -34,18 +43,29 @@ class NameGenerator extends Component {
           />
           <button
             disabled={isEmpty(this.state.name)}
-            onClick={this.generate}
+            onClick={this.saveName}
           >
             Сохранить
           </button>
-          {/*<div className="flags">
-            hey
-          </div>*/}
         </div>
-        <div className="all-names">
-          {this.state.allNames.map(name => <div key={name}>{name}</div>)}
+        <div className="flags">
+          <input
+            type="radio"
+            checked={this.state.nameMode === NameMode.CHARACTER}
+            onChange={() => this.setState({ nameMode: NameMode.CHARACTER })}
+            id="rb-character"
+          />
+          <label for="rb-character">Персонаж</label>
+          <input
+            type="radio"
+            checked={this.state.nameMode === NameMode.OBJECT}
+            onChange={() => this.setState({ nameMode: NameMode.OBJECT })}
+            id="rb-object"
+          />
+          <label for="rb-object">Объект</label>
         </div>
-      </div>
+        <NameContainer names={this.state.allNames} />
+      </section>
     )
   }
 }
