@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "06ab98fe30ae6d83a7d5b9fcb8da2929",
+    "revision": "21275f4c303db6ef9445f05d3fce2952",
     "url": "/quenta/index.html"
   },
   {
-    "revision": "33b86557172b79dd9ac6",
-    "url": "/quenta/static/css/main.ba398ea5.chunk.css"
+    "revision": "f40734f6ad8ab4c8d0db",
+    "url": "/quenta/static/css/main.76bfb52c.chunk.css"
   },
   {
-    "revision": "c63d85398e1a472bd830",
-    "url": "/quenta/static/js/2.72912114.chunk.js"
+    "revision": "6fe6743f6b6d272f11a5",
+    "url": "/quenta/static/js/2.39a9b070.chunk.js"
   },
   {
-    "revision": "33b86557172b79dd9ac6",
-    "url": "/quenta/static/js/main.9d313fe8.chunk.js"
+    "revision": "f40734f6ad8ab4c8d0db",
+    "url": "/quenta/static/js/main.0b6a546d.chunk.js"
   },
   {
     "revision": "93797c31322fbf42cf92",
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/quenta/static/media/alegreya_regular.0c2c2601.ttf"
   },
   {
-    "revision": "59a17fc9a860eee4a9704eb870b6c1b8",
-    "url": "/quenta/static/media/alegreya_regular.59a17fc9.svg"
+    "revision": "417b6a71ce2d3bc86ecfeed8643b3a42",
+    "url": "/quenta/static/media/alegreya_regular.417b6a71.svg"
   },
   {
     "revision": "70d32ecf5ea94465f845f156daff0dcb",
