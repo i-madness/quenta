@@ -14,7 +14,7 @@ export default function (props) {
         <NameGenerator />
       </article>
       <footer className="app-footer">
-        Copyright
+        © Valery Romanov, 2019
       </footer>
     </div>
   )

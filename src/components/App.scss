@@ -1,8 +1,10 @@
 @import "../assets/fonts/Alegreya/alegreya-regular.css";
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap');
+@import "./common";
 
+// TODO figure out a proper way to set up a color themes
 @mixin lightTheme {
   background-color: #fff;
-
 }
 
 $bg-dark: #1c1c20;
@@ -15,7 +17,7 @@ $bg-light: #fff;
     "content"
     "footer"
   ;
-  grid-auto-rows: 13% 1fr 70px;
+  grid-auto-rows: 13% 1fr 50px;
   align-items: center;
   height: 100%;
 
@@ -36,8 +38,10 @@ $bg-light: #fff;
   footer.app-footer {
     height: 100%;
     grid-area: footer;
+    font-family: $font-cyrillic-exotic;
     display: grid;
-    background-color: #5e619d;
+    background-color: $bg-color-main;
+    color: #fff;
     justify-items: center;
     align-items: center;
   }

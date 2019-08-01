@@ -1,6 +1,52 @@
+@import "../common";
+
 #name-generator {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1em 0;
+
+  .generator-input-group {
+    height: 70px;
+    border-radius: 3rem 3rem 0 0;
+    border: 1px solid $bg-color-main;
+    //border-bottom: 1px solid #b8b8b8;
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 1em;
+    font-family: $font-cyrillic-exotic;
+
+    input {
+      border: none;
+      border-radius: 3rem 0 0 0;
+      font-family: inherit;
+      padding: 0 1.5em;
+      outline: none;
+      font-size: inherit;
+    }
+
+    button {
+      border: none;
+      font-family: inherit;
+      border-radius: 0 3rem 0 0;
+      background-color: $bg-color-main;
+      color: #fff;
+      padding: 0 1em;
+      font-size: inherit;
+      outline: none;
+      margin-right: -5px;
+      margin-bottom: -1px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $bg-color-main-hover;
+        box-shadow: $bg-color-main;
+      }
+
+      &:hover &:disabled, &:disabled {
+        background-color: $bg-color-main-disabled;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
