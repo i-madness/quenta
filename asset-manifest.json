@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/quenta/static/css/main.76bfb52c.chunk.css",
-    "main.js": "/quenta/static/js/main.0b6a546d.chunk.js",
-    "main.js.map": "/quenta/static/js/main.0b6a546d.chunk.js.map",
+    "main.css": "/quenta/static/css/main.7d052c30.chunk.css",
+    "main.js": "/quenta/static/js/main.3bc90814.chunk.js",
+    "main.js.map": "/quenta/static/js/main.3bc90814.chunk.js.map",
     "runtime~main.js": "/quenta/static/js/runtime~main.215bd716.js",
     "runtime~main.js.map": "/quenta/static/js/runtime~main.215bd716.js.map",
-    "static/js/2.39a9b070.chunk.js": "/quenta/static/js/2.39a9b070.chunk.js",
-    "static/js/2.39a9b070.chunk.js.map": "/quenta/static/js/2.39a9b070.chunk.js.map",
+    "static/js/2.2a406bef.chunk.js": "/quenta/static/js/2.2a406bef.chunk.js",
+    "static/js/2.2a406bef.chunk.js.map": "/quenta/static/js/2.2a406bef.chunk.js.map",
     "index.html": "/quenta/index.html",
-    "precache-manifest.06d5f7dc7fd81548fe89752fd290e4a6.js": "/quenta/precache-manifest.06d5f7dc7fd81548fe89752fd290e4a6.js",
+    "precache-manifest.763d3b2c9e70e18e43373c75bf0c7033.js": "/quenta/precache-manifest.763d3b2c9e70e18e43373c75bf0c7033.js",
     "service-worker.js": "/quenta/service-worker.js",
-    "static/css/main.76bfb52c.chunk.css.map": "/quenta/static/css/main.76bfb52c.chunk.css.map",
+    "static/css/main.7d052c30.chunk.css.map": "/quenta/static/css/main.7d052c30.chunk.css.map",
     "static/media/index.scss": "/quenta/static/media/Lato-Regular.c5eb5440.ttf",
     "static/media/App.scss": "/quenta/static/media/alegreya_regular.8f262cbc.woff"
   }
