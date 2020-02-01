@@ -1,56 +1,71 @@
 @import "../common";
 
-#name-generator {
+.name-generator {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1em 0;
 
-  .generator-input-group {
+  &__input-group {
     height: 70px;
     border-radius: 3rem 3rem 0 0;
     display: flex;
     font-size: 20px;
     margin-bottom: 1em;
     font-family: $font-cyrillic-exotic;
+  }
 
-    input {
-      border: 1px solid $bg-color-main;
-      border-radius: 3rem 0 0 0;
-      font-family: inherit;
-      padding: 0 1.5em;
-      outline: none;
-      font-size: inherit;
+  &__input {
+    border: 1px solid $bg-color-main;
+    border-radius: 3rem 0 0 0;
+    font-family: inherit;
+    padding: 0 1.5em;
+    outline: none;
+    font-size: inherit;
+  }
+
+  &__button {
+    &:focus {
+      box-shadow: 0 0 5px 0.2rem $bg-color-main;
     }
 
-    button {
-      border: none;
-      font-family: inherit;
-      border-radius: 0 3rem 0 0;
-      background-color: $bg-color-main;
-      color: #fff;
-      padding: 0 1em;
-      font-size: inherit;
-      outline: none;
-      cursor: pointer;
+    &:hover {
+      background-color: $bg-color-main-hover;
+      box-shadow: $bg-color-main;
+    }
 
-      &:focus {
-        box-shadow: 0 0 5px 0.2rem $bg-color-main;
-      }
-
-      &:hover {
-        background-color: $bg-color-main-hover;
-        box-shadow: $bg-color-main;
-      }
-
-      &:hover &:disabled, &:disabled {
-        background-color: $bg-color-main-disabled;
-        cursor: not-allowed;
-      }
+    &:disabled {
+      background-color: $bg-color-main-disabled;
+      cursor: not-allowed;
     }
   }
 
+  &__button-generate {
+    border: none;
+    background-color: $bg-color-secondary;
+    color: $btn-text;
+    padding: 0 1em;
+    font-size: inherit;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__button-save {
+    border: none;
+    border-radius: 0 3rem 0 0;
+    background-color: $bg-color-main;
+    color: $btn-text;
+    padding: 0 1em;
+    font-size: inherit;
+    outline: none;
+    cursor: pointer;
+  }
+
   .flags {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1em;
+
     label {
       margin-right: 1em;
 

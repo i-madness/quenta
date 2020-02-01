@@ -1,5 +1,6 @@
 import React from 'react'
 import * as NameMode from '../../model/view/name-mode'
+import { Genders } from '../../logic/name-generator'
 
 import './NameContainer.scss'
 
@@ -14,9 +15,23 @@ const TagStyles = {
   }
 }
 
-export const NameTag = ({ name, mode }) => {
+export const NameTag = ({ name, mode, gender }) => {
+  let genderClass
+  switch (gender) {
+    case Genders.FEMALE:
+      genderClass = 'name-tag--female'
+      break
+    case Genders.MALE:
+      genderClass = 'name-tag--male'
+      break
+    case Genders.OTHER:
+      genderClass = 'name-tag--other-gender'
+      break
+    default:
+      genderClass = ''
+  }
   return (
-    <div className="name-tag" style={mode ? TagStyles[mode] : undefined}>
+    <div className={`name-tag ${genderClass}`} style={mode ? TagStyles[mode] : undefined}>
       {name}
     </div>
   )
@@ -24,7 +39,7 @@ export const NameTag = ({ name, mode }) => {
 
 // TODO this supposed to be connected to reducer
 export const NameContainer = ({ names }) => {
-  const tags = names.map(n => <NameTag name={n.value} mode={n.mode} />)
+  const tags = names.map((name, index) => <NameTag name={name.value} mode={name.mode} gender={name.gender} key={index}/>)
   return (
     <div id="name-container">
       {tags}

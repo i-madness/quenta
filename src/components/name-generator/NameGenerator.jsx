@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { processName } from '../../utils/names.util'
-import { isEmpty } from 'lodash'
+import { Genders, getRandomName } from '../../logic/name-generator'
 import { NameContainer } from '../name-container/NameContainer'
+import isEmpty from 'lodash/isEmpty'
 
 import * as NameMode from '../../model/view/name-mode'
 import './NameGenerator.scss'
@@ -12,7 +13,8 @@ class NameGenerator extends Component {
     this.state = {
       name: '',
       allNames: [],
-      nameMode: NameMode.CHARACTER
+      nameMode: NameMode.CHARACTER,
+      gender: Genders.MALE
     }
   }
 
@@ -24,46 +26,87 @@ class NameGenerator extends Component {
           ...state.allNames,
           {
             value: processName(state.name),
-            mode: state.nameMode
+            mode: state.nameMode,
+            gender: state.gender
           }
         ]
       }))
     }
   }
 
+  generateName = () => {
+    this.setState(state => ({
+      name: getRandomName(state.gender)
+    }))
+  }
+
   render() {
     return (
-      <section id="name-generator">
-        <div className="generator-input-group">
+      <section className="name-generator">
+        <div className="name-generator__input-group">
           <input
-            className="generator-input"
+            className="name-generator__input"
             value={this.state.name}
             placeholder="Введите имя/название"
             onChange={event => this.setState({ name: event.target.value })}
           />
           <button
+            className="name-generator__button name-generator__button-generate"
+            onClick={this.generateName}
+          >
+            Сгенерировать
+          </button>
+          <button
+            className="name-generator__button name-generator__button-save"
             disabled={isEmpty(this.state.name)}
             onClick={this.saveName}
           >
             Сохранить
           </button>
         </div>
-        <div className="flags">
+
+        <form className="flags">
           <input
             type="radio"
             checked={this.state.nameMode === NameMode.CHARACTER}
             onChange={() => this.setState({ nameMode: NameMode.CHARACTER })}
             id="rb-character"
           />
-          <label for="rb-character">Персонаж</label>
+          <label htmlFor="rb-character">Персонаж</label>
           <input
             type="radio"
             checked={this.state.nameMode === NameMode.OBJECT}
             onChange={() => this.setState({ nameMode: NameMode.OBJECT })}
             id="rb-object"
           />
-          <label for="rb-object">Объект</label>
-        </div>
+          <label htmlFor="rb-object">Объект</label>
+        </form>
+
+        {this.state.nameMode === NameMode.CHARACTER &&
+        <form className="flags">
+          <input
+            type="radio"
+            checked={this.state.gender === Genders.MALE}
+            onChange={() => this.setState({gender: Genders.MALE})}
+            id="rb-male"
+          />
+          <label htmlFor="rb-male">Мужской</label>
+          <input
+            type="radio"
+            checked={this.state.gender === Genders.FEMALE}
+            onChange={() => this.setState({gender: Genders.FEMALE})}
+            id="rb-female"
+          />
+          <label htmlFor="rb-female">Женский</label>
+          <input
+            type="radio"
+            checked={this.state.gender === Genders.OTHER}
+            onChange={() => this.setState({gender: Genders.OTHER})}
+            id="rb-other-gender"
+          />
+          <label htmlFor="rb-other-gender">Другой</label>
+        </form>
+        }
         <NameContainer names={this.state.allNames} />
       </section>
     )

@@ -8,4 +8,28 @@
   padding: .5em;
   margin: .5em;
   cursor: pointer;
+
+  &--male::after {
+    background-color: #54ffdd;
+    color: #000;
+    content: '♂';
+    padding: .3em;
+    margin-left: .5em;
+  }
+
+  &--female::after {
+    background-color: #a1ff58;
+    color: #000;
+    content: '♀';
+    padding: .3em;
+    margin-left: .5em;
+  }
+
+  &--other-gender::after {
+    background-color: #eeff68;
+    color: #000;
+    content: '☿';
+    padding: .3em;
+    margin-left: .5em;
+  }
 }
