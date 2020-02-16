@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/quenta/static/css/main.7d052c30.chunk.css",
-    "main.js": "/quenta/static/js/main.3bc90814.chunk.js",
-    "main.js.map": "/quenta/static/js/main.3bc90814.chunk.js.map",
-    "runtime~main.js": "/quenta/static/js/runtime~main.215bd716.js",
-    "runtime~main.js.map": "/quenta/static/js/runtime~main.215bd716.js.map",
-    "static/js/2.2a406bef.chunk.js": "/quenta/static/js/2.2a406bef.chunk.js",
-    "static/js/2.2a406bef.chunk.js.map": "/quenta/static/js/2.2a406bef.chunk.js.map",
-    "index.html": "/quenta/index.html",
-    "precache-manifest.763d3b2c9e70e18e43373c75bf0c7033.js": "/quenta/precache-manifest.763d3b2c9e70e18e43373c75bf0c7033.js",
-    "service-worker.js": "/quenta/service-worker.js",
-    "static/css/main.7d052c30.chunk.css.map": "/quenta/static/css/main.7d052c30.chunk.css.map",
-    "static/media/index.scss": "/quenta/static/media/Lato-Regular.c5eb5440.ttf",
-    "static/media/App.scss": "/quenta/static/media/alegreya_regular.8f262cbc.woff"
+    "main.css": "/static/css/main.dd963d40.chunk.css",
+    "main.js": "/static/js/main.3bc90814.chunk.js",
+    "main.js.map": "/static/js/main.3bc90814.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.2a406bef.chunk.js": "/static/js/2.2a406bef.chunk.js",
+    "static/js/2.2a406bef.chunk.js.map": "/static/js/2.2a406bef.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3374ab6b364ff5b0a00a06ad92bcd8ec.js": "/precache-manifest.3374ab6b364ff5b0a00a06ad92bcd8ec.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.dd963d40.chunk.css.map": "/static/css/main.dd963d40.chunk.css.map",
+    "static/media/index.scss": "/static/media/Lato-Regular.c5eb5440.ttf",
+    "static/media/App.scss": "/static/media/alegreya_regular.8f262cbc.woff"
   }
 }
