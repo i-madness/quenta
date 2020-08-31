@@ -29,21 +29,29 @@ $bg-light: #fff;
   align-items: center;
   height: 100%;
 
-  header.app-header {
+  .app-header {
     grid-area: header;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &--links-block {
+      display: flex;
+      width: 60%;
+      justify-content: space-evenly;
+    }
   }
 
-  article.app-content {
+  .app-content {
     grid-area: content;
     justify-content: start;
     height: 100%;
+    overflow: hidden;
   }
 
-  footer.app-footer {
+  .app-footer {
     height: 100%;
     grid-area: footer;
     font-family: $font-cyrillic-exotic;
@@ -56,6 +64,15 @@ $bg-light: #fff;
 }
 
 // ================== Reusable app elements / local style library ===========================
+/*Disable <a> links default styles*/
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: unset;
+}
+
 /* Custom radio buttons*/
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {

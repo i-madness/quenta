@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { processName } from '../../utils/names.util'
 import { Genders, getRandomName } from '../../logic/name-generator'
-import { NameContainer } from '../name-container/NameContainer'
+import { NameContainer } from './name-container/NameContainer'
 import isEmpty from 'lodash/isEmpty'
 
 import * as NameMode from '../../model/view/name-mode'
