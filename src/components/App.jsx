@@ -13,16 +13,14 @@ class App extends Component {
   render() {
     return (
       <div id="application-layout">
-        <header className="app-header">
+        <nav className="app-header">
           <Logo />
-          <nav className="app-header--links-block">
-            {routes.map((r, index) => (
-              <Link key={index} to={r.path}>
-                {r.text}
-              </Link>
-            ))}
-          </nav>
-        </header>
+          {routes.map((r, index) => (
+            <Link className="app-header--link" key={index} to={r.path}>
+              {r.text}
+            </Link>
+          ))}
+        </nav>
         <article className="app-content">
           <Switch>
             {routes.map((r, index) => (
@@ -37,7 +35,7 @@ class App extends Component {
           </Switch>
         </article>
         <footer className="app-footer">
-          © Valery Romanov, 2019 - {new Date().getFullYear()}
+          © V.Scarlet, 2019 - {new Date().getFullYear()}
         </footer>
       </div>
     )

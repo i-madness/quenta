@@ -17,7 +17,6 @@ const ImageLogo = ({ color, rotation }) => (
        width="50px"
        height="50px"
        viewBox="0 0 32 32"
-       version="1.1"
   >
     <g>
       <path
@@ -34,7 +33,7 @@ const ImageLogo = ({ color, rotation }) => (
 )
 
 export const Logo = () => {
-  let [color, changeColor] = useState('#000')
+  let [color, changeColor] = useState('#fff')
   let [rotation, setRotation] = useState(false)
   return (
     <div id="logo"
