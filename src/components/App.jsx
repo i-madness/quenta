@@ -43,14 +43,16 @@ class App extends Component {
               key={index}
               to={r.path}
             >
+              {r.isLegacy && <span className="app-header__legacy-label">legacy</span>}
               {r.text}
             </NavLink>
           ))}
           <span
             className="app-header__lang-switch"
+            title={this.props.locale === 'en' ? 'Переключить на русский язык' : 'Switch to english'}
             onClick={() => this.changeLocale()}
           >
-            RU/EN
+            {this.props.locale === 'en' ? 'EN' : 'RU'}
           </span>
         </nav>
         <article className="app-content">

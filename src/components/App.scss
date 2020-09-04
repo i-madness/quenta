@@ -41,6 +41,13 @@ $bg-light: #fff;
       margin-left: $grid-gap-medium;
     }
 
+    &__legacy-label {
+      font-size: 13px;
+      font-style: italic;
+      color: #a62cff;
+      margin-right: .5em;
+    }
+
     &__lang-switch {
       cursor: pointer;
       border: 1px solid #fff;

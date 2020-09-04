@@ -10,9 +10,10 @@ const routes = [
     component: CharBook,
   },
   {
-    text: '[legacy] Генератор имён',
+    text: 'Генератор имён',
     path: '/name-gen',
     component: NameGenerator,
+    isLegacy: true
   },
 ]
 
