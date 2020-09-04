@@ -3,27 +3,56 @@
   display: grid;
   grid-template-columns: 150px 1fr;
 
-  &--sidebar {
+  &__sidebar {
     overflow: auto;
   }
 
-  &--preview-block {
+  &__preview-block {
     padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    filter: grayscale(100%);
+
+    &:hover {
+      background-color: #c9c9c9;
+      filter: grayscale(0);
+    }
+
+    &.active {
+      background-color: #d7d7d7;
+      filter: grayscale(0);
+    }
   }
 
-  &--preview-name {
+  &__preview-name {
     text-align: center;
   }
 
-  &--preview-image {
+  &__preview-image {
     width: 100px;
     height: 100px;
   }
 
-  &--content {
+  &__character-caption {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  &__main-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  &__main-image {
+    height: 400px;
+  }
+
+  &__content {
     padding: 1em;
   }
 }

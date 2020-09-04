@@ -36,8 +36,26 @@ $bg-light: #fff;
     display: flex;
     align-items: center;
 
-    &--link {
+    &__link {
+      cursor: pointer;
       margin-left: $grid-gap-medium;
+    }
+
+    &__lang-switch {
+      cursor: pointer;
+      border: 1px solid #fff;
+      border-radius: 15px;
+      padding: 5px;
+      margin-left: $grid-gap-medium;
+      margin-right: $grid-gap-medium;
+
+      &--active-part {
+
+      }
+
+      &--passive-part {
+
+      }
     }
   }
 
