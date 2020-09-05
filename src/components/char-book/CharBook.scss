@@ -44,8 +44,15 @@
   &__main-image-wrapper {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-bottom: 1em;
+  }
+
+  &__art-source {
+    color: #54ffdd;
+    text-decoration: underline;
   }
 
   &__main-image {
