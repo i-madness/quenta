@@ -2,15 +2,13 @@ import CharBook from './char-book/CharBook'
 import NameGenerator from './name-generator/NameGenerator'
 
 const routes = [
-  // TODO localizations instead of raw text
   {
-    text: 'Каталог персонажей',
+    textKey: 'charCatalog',
     path: '/char-book',
-    //exact: true,
     component: CharBook,
   },
   {
-    text: 'Генератор имён',
+    textKey: 'nameGen',
     path: '/name-gen',
     component: NameGenerator,
     isLegacy: true

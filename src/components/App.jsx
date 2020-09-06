@@ -7,7 +7,8 @@ import {
   Switch,
 } from "react-router-dom"
 import routes from './routes'
-import { loadEntries, changeLocale } from '../reducers/char-book.actions'
+import { loadEntries, changeLocale } from 'reducers/char-book.actions'
+import * as LocaleConstants from 'localization'
 
 import './App.scss'
 
@@ -44,15 +45,15 @@ class App extends Component {
               to={r.path}
             >
               {r.isLegacy && <span className="app-header__legacy-label">legacy</span>}
-              {r.text}
+              {LocaleConstants[this.props.locale].navbarCaptions.links[r.textKey]}
             </NavLink>
           ))}
           <span
             className="app-header__lang-switch"
-            title={this.props.locale === 'en' ? 'Переключить на русский язык' : 'Switch to english'}
+            title={LocaleConstants[this.props.locale].navbarCaptions.LANGUAGE_TOGGLE_MSG}
             onClick={() => this.changeLocale()}
           >
-            {this.props.locale === 'en' ? 'EN' : 'RU'}
+            {LocaleConstants[this.props.locale].LOCALE_CAPTION}
           </span>
         </nav>
         <article className="app-content">

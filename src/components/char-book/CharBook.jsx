@@ -1,11 +1,11 @@
 import React from 'react'
 import { Switch, Route, NavLink, useParams, useRouteMatch } from 'react-router-dom'
 import { useStore } from 'react-redux'
+import * as LocaleConstants from 'localization'
 
 import './CharBook.scss'
 
-function Sidebar({ url }) {
-  const { currentLocale, charEntries } = useStore().getState().charBookReducer
+function Sidebar({ url, currentLocale, charEntries }) {
   return (
     <aside className="char-book__sidebar">
       {charEntries.map((character, index) => (
@@ -23,9 +23,8 @@ function Sidebar({ url }) {
   )
 }
 
-function CharacterInfo() {
+function CharacterInfo({ currentLocale, charEntries }) {
   const { charId } = useParams()
-  const { currentLocale, charEntries } = useStore().getState().charBookReducer
   const entry = charEntries.find(character => character.id === charId)
 
   if (!entry) {
@@ -42,7 +41,20 @@ function CharacterInfo() {
           alt={entry.captions[currentLocale].name}
           className="char-book__main-image"
         />
+        {entry.artSource &&
+          <div>
+            <span className="char-book__art-source">
+              {LocaleConstants[currentLocale].charBook.SOURCE_LABEL}
+            </span>
+            &nbsp;
+            <a href={entry.artSource.link} className="char-book__art-source-link">
+              {entry.artSource.name || entry.artSource.link}
+            </a>
+          </div>
+        }
       </div>
+      <div><strong>{LocaleConstants[currentLocale].charBook.CLASS_LABEL}</strong> {entry.captions[currentLocale].class} ({entry.captions[currentLocale].subclass})</div>
+      <div><strong>{LocaleConstants[currentLocale].charBook.RACE_LABEL}</strong> {entry.captions[currentLocale].race}</div>
       <div>{entry.captions[currentLocale].bio}</div>
     </>
   )
@@ -50,17 +62,25 @@ function CharacterInfo() {
 
 export default function CharBook() {
   const { path, url } = useRouteMatch()
+  const { currentLocale, charEntries } = useStore().getState().charBookReducer
 
   return (
     <section className="char-book">
-      <Sidebar url={url}/>
+      <Sidebar
+        url={url}
+        charEntries={charEntries}
+        currentLocale={currentLocale}
+      />
       <section className="char-book__content">
         <Switch>
           <Route exact path={path}>
-            <h3>Please select a character</h3>
+            <h3>{LocaleConstants[currentLocale].charBook.SELECT_CHARACTER_MSG}</h3>
           </Route>
           <Route path={`${path}/:charId`}>
-            <CharacterInfo/>
+            <CharacterInfo
+              currentLocale={currentLocale}
+              charEntries={charEntries}
+            />
           </Route>
         </Switch>
       </section>
