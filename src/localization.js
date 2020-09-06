@@ -11,6 +11,9 @@ export const en = {
   },
   charBook: {
     SELECT_CHARACTER_MSG: 'Select a character...',
+    CLASS_LABEL: 'Class:',
+    RACE_LABEL: 'Race:',
+    SOURCE_LABEL: 'Art by:',
   },
 }
 
@@ -27,5 +30,8 @@ export const ru = {
   },
   charBook: {
     SELECT_CHARACTER_MSG: 'Выберите персонажа...',
+    CLASS_LABEL: 'Класс:',
+    RACE_LABEL: 'Раса:',
+    SOURCE_LABEL: 'Источник:',
   },
 }

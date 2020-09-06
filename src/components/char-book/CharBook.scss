@@ -51,8 +51,13 @@
   }
 
   &__art-source {
-    color: #54ffdd;
+    font-style: italic;
+  }
+
+  &__art-source-link {
+    color: #0068a6 !important;
     text-decoration: underline;
+    font-style: italic;
   }
 
   &__main-image {

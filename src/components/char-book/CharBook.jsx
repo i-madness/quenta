@@ -42,13 +42,19 @@ function CharacterInfo({ currentLocale, charEntries }) {
           className="char-book__main-image"
         />
         {entry.artSource &&
-        <a href={entry.artSource.link} className="char-book__art-source">
-          {currentLocale === 'en' ? 'Source: ' : 'Источник: '}{entry.artSource.name || entry.artSource.link}
-        </a>
+          <div>
+            <span className="char-book__art-source">
+              {LocaleConstants[currentLocale].charBook.SOURCE_LABEL}
+            </span>
+            &nbsp;
+            <a href={entry.artSource.link} className="char-book__art-source-link">
+              {entry.artSource.name || entry.artSource.link}
+            </a>
+          </div>
         }
       </div>
-      <div><strong>Class</strong>: {entry.captions[currentLocale].class} ({entry.captions[currentLocale].subclass})</div>
-      <div><strong>Race</strong>: {entry.captions[currentLocale].race}</div>
+      <div><strong>{LocaleConstants[currentLocale].charBook.CLASS_LABEL}</strong> {entry.captions[currentLocale].class} ({entry.captions[currentLocale].subclass})</div>
+      <div><strong>{LocaleConstants[currentLocale].charBook.RACE_LABEL}</strong> {entry.captions[currentLocale].race}</div>
       <div>{entry.captions[currentLocale].bio}</div>
     </>
   )
