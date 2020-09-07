@@ -48,6 +48,7 @@ class App extends Component {
               {LocaleConstants[this.props.locale].navbarCaptions.links[r.textKey]}
             </NavLink>
           ))}
+          <div className="spacer"/>
           <span
             className="app-header__lang-switch"
             title={LocaleConstants[this.props.locale].navbarCaptions.LANGUAGE_TOGGLE_MSG}

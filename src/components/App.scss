@@ -17,6 +17,8 @@ body {
 $bg-dark: #1c1c20;
 $bg-light: #fff;
 
+$nav-link-width: 160px;
+
 #application-layout {
   display: grid;
   grid-template-areas:
@@ -38,6 +40,9 @@ $bg-light: #fff;
 
     &__link {
       cursor: pointer;
+      display: flex;
+      justify-content: space-around;
+      min-width: $nav-link-width;
       margin-left: $grid-gap-medium;
     }
 
@@ -56,12 +61,9 @@ $bg-light: #fff;
       margin-left: $grid-gap-medium;
       margin-right: $grid-gap-medium;
 
-      &--active-part {
-
-      }
-
-      &--passive-part {
-
+      &:hover {
+        background-color: #fff;
+        color: $bg-dark;
       }
     }
   }
@@ -89,10 +91,15 @@ $bg-light: #fff;
 /*Disable <a> links default styles*/
 a {
   text-decoration: none;
+  color: unset;
 }
 
 a:visited {
   color: unset;
+}
+
+.spacer {
+  width: 100%;
 }
 
 /* Custom radio buttons*/
